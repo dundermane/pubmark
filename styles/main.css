@@ -1,0 +1,166 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+#container {
+	text-align: center;
+	padding: 20px;
+	padding-top: 50px;
+	min-width: 410;
+}
+
+#content1 {
+	display: inline-block;
+	vertical-align: top;
+	height: 400px;
+	width: 30%;
+	margin: 0 1em;
+	min-width: 400px; /*Same as #market canvas*/
+	background-color: #EEE;
+}
+
+#content2 {
+	display: inline-block;
+	vertical-align: top;
+	border: none;
+	width: 400px;
+	height: 400px;
+	margin: 0 1em;
+	background-color: #EEE;
+}
+
+#market {
+	vertical-align: top;
+}
+
+#titleBlock {
+	border-radius: 8px;
+	padding: 8px 0px;
+	
+	/* gradient kit */
+	background-color: #595;  
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#7B7), to(#595));
+	background-image: -webkit-linear-gradient(top, #7B7, #595); 
+	background-image: -moz-linear-gradient(top, #7B7, #595);
+	background-image: -ms-linear-gradient(top, #7B7, #595);
+	background-image: -o-linear-gradient(top, #7B7, #595);
+
+}
+
+#titleBlock  h1,h2,div{
+	font-family: sans-serif;
+	text-align: center;
+}
+
+#titleBlock h1 {
+	font-size: 35pt;
+	color: #232;
+}
+
+#titleBlock h2 {
+	font-style: bold;
+	font-size: 14pt;
+	color: #444;
+}
+
+#statusBlock {
+	padding: 4px;
+	margin: 4px 2px;
+}
+
+#shoutBlock {
+	overflow: auto;
+	height: 70%;
+}
+
+
+
+.shout {
+	display: inline-block;
+	position: relative;
+	vertical-align: baseline;
+	width: 95%;
+	margin-top: 6px;
+	border-radius: 5px;
+	padding: 5px;
+	background-color: #DDE;
+	color: #555;
+	font-size: 8pt;
+}
+
+.shout p {
+	text-align: center;
+	margin: 5px;
+	font-size: 12px;
+}
+
+.shout img {
+	height: 32px;
+	width: 32px;
+	margin: 2px;
+	float: left;
+}
+
+.shout-author {
+	display: block;
+	position: absolute;
+	bottom: 8px;
+	left: 44px;
+	float: left;
+}
+
+.shout-time {
+	display: block;
+	position: absolute;
+	bottom: 8px;
+	right: 8px;
+}
+
+footer {
+	text-align: center;
+	width: 80%;
+	margin: auto;
+	margin-top: 15px;
+	font-size: 8pt;
+}
