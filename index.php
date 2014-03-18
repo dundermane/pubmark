@@ -58,7 +58,7 @@
 			</div>
 		</div>
 		<div id="content2">
-			<script type="text/javascript" src="something.js" defer="defer"></script>
+			<script type="text/javascript" src="market.php" defer="defer"></script>
 		</div>
 		<footer class="notMobile">
 		Public Market App | 2014
