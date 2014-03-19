@@ -88,7 +88,7 @@
 				//-have a check-in time that is after 5am on Saturday
 				//-have coordinates that are between bounds
 				//-have a type
-
+				echo 'HELLO OUT THERE';
 				// Performing SQL query
 				$lastSat->modify('this week');
 				$lastSat->modify('this week +6 days');
