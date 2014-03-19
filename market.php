@@ -76,15 +76,6 @@ zout_button.add(line3);
 //-have coordinates that are between bounds
 //-have a type
 
-<?php
-
-// Performing SQL query
-$lastSat->modify('this week');
-$lastSat->modify('this week +6 days');
-$query = 'SELECT ID, LastCheckIn FROM vendors\nWHERE LastCheckIn > ' . $lastSat;
-$result = mysql_query($query) or die('Query failed: ' . mysql_error());
-
-?>
 
 var icon1 = new Kinetic.Image({
   x: 0,

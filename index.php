@@ -11,7 +11,7 @@
 		$URL = '66.66.103.33';
 	
 		// Connecting, selecting database
-		$link = mysql_connect(URL , 'webuser', '')
+		$link = mysql_connect($URL , 'webuser', '')
 			or die('Could not connect: ' . mysql_error());
 		echo 'Connected successfully';
 		mysql_select_db('pubmark') or die('Could not select database');
@@ -79,6 +79,15 @@
 		</div>
 		<footer class="notMobile">
 		Public Market App | 2014
+		<?php
+
+		// Performing SQL query
+		$lastSat->modify('this week');
+		$lastSat->modify('this week +6 days');
+		$query = 'SELECT ID, LastCheckIn FROM vendors\nWHERE LastCheckIn > ' . $lastSat;
+		$result = mysql_query($query) or die('Query failed: ' . mysql_error());
+
+		?>
 		</footer>
 	</div>
 </body>
