@@ -6,6 +6,16 @@
 	<link rel='stylesheet' media='screen and (max-device-width: 480px)' href='styles/mobile.css' type='text/css' />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.0.1.min.js"></script>
+	<?php
+		//Globals for whole site
+		$URL = '66.66.103.33';
+	
+		// Connecting, selecting database
+		$link = mysql_connect(URL , 'webuser', '')
+			or die('Could not connect: ' . mysql_error());
+		echo 'Connected successfully';
+		mysql_select_db('pubmark') or die('Could not select database');
+	?>
 </head>
 
 <body>
@@ -16,7 +26,14 @@
 				<h2 class="notMobile">"The Freshest Place in Rochester"</h2>
 			</header>
 			<div id="statusBlock">
-				<h3>The Market is Closed.</h3>
+				<h3><?php
+						if ( intval(date('N')) == 6 && intval(date('H')) < 15 && intval(date('H')) > 8) {
+							echo "The Public Market is Open";
+						} else {
+							echo "The Public Market is Closed";
+						}
+				  
+				    ?></h3>
 			</div>
 			<div id="shoutBlock" class="notMobile">
 				<div class="shout" id="shout1">

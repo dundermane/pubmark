@@ -63,11 +63,37 @@ var zout_button = new Kinetic.Group({
   y: 10
 });
 
+
 zin_button.add(rect1);
 zin_button.add(line1);
 zin_button.add(line2);
 zout_button.add(rect2);
 zout_button.add(line3);
+
+//Define where Icons are
+//Loop through database and show icons that:
+//-have a check-in time that is after 5am on Saturday
+//-have coordinates that are between bounds
+//-have a type
+
+<?php
+
+// Performing SQL query
+$lastSat->modify('this week');
+$lastSat->modify('this week +6 days');
+$query = 'SELECT ID, LastCheckIn FROM vendors\nWHERE LastCheckIn > ' . $lastSat;
+$result = mysql_query($query) or die('Query failed: ' . mysql_error());
+
+?>
+
+var icon1 = new Kinetic.Image({
+  x: 0,
+  y: 0,
+  image: mapObj,
+  width: 400,
+  height: 400
+});
+
 
 
 var mapObj = new Image();

@@ -1,0 +1,17 @@
+This document describes the database that the Public Market App uses.
+The document is meant for informational purposes.
+Please keep the format consistant.
+
+===============
+Table: vendors
+===============
+ID - STRING - A Twitter/Facebook Identification number that is unique to that entry
+DateCreated - TIMESTAMP - The timestamp of when the user was created
+Email - EMAIL - The email of the vendor
+Name - STRING - The name of the vendor
+Category - STRING - The type of vendor this is. and consequently the icon
+Tagline - STRING - The tagline of the vendor ex.:"a farm with attitude"
+LastCheckIn - TIMESTAMP - The timestamp of the last check in for the vendor
+LastLocX - INT - X Coordinate of last check in
+LastLocY - INT - Y Coordinate of last check in
+Local - BOOLEAN - If they create their product in the Rochester area.
