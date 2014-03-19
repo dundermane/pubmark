@@ -8,7 +8,7 @@
 	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.0.1.min.js"></script>
 	<?php
 		//Globals for whole site
-		$URL = '66.66.103.33';
+		$URL = 'localhost';
 	
 		// Connecting, selecting database
 		$link = mysql_connect($URL , 'webuser', 'iamauser')
