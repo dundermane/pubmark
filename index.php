@@ -92,9 +92,10 @@
 				// Performing SQL query
 				$lastSat->modify('this week');
 				$lastSat->modify('this week +6 days');
-				$query = 'SELECT ID, LastCheckIn FROM vendors\nWHERE LastCheckIn > ' . $lastSat;
+				$query = 'SELECT ID, LastCheckIn FROM vendors' . $lastSat;
 				$result = mysql_query($query) or die('Query failed: ' . mysql_error());
 				echo $result;
+				echo $lastSat;
 
 
 				?>
