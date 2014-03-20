@@ -6,16 +6,6 @@
 	<link rel='stylesheet' media='screen and (max-device-width: 480px)' href='styles/mobile.css' type='text/css' />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 	<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.0.1.min.js"></script>
-	<?php
-	//Globals for whole site
-	$URL = 'localhost';
-
-	// Connecting, selecting database
-	$link = mysql_connect($URL , 'webuser', 'iamauser')
-	or die('Could not connect: ' . mysql_error());
-	echo 'Connected successfully';
-	mysql_select_db('pubmark') or die('Could not select database');
-	?>
 </head>
 
 <body>
@@ -39,7 +29,7 @@
 			</div>
 			<div id="shoutBlock" class="notMobile">
 				<div class="shout" id="shout1">
-					<img src="images/icn/flower.svg"/>
+					<img src="images/icn/flowers.svg"/>
 					<p>"This is my message!"</p>
 					<span class="shout-author">Mary's Farm</span>
 					<span class="shout-time">1:10p<span>
@@ -81,25 +71,6 @@
 		</div>
 		<footer class="notMobile">
 			Public Market App | 2014
-				<?php
-
-				//Define where Icons are
-				//Loop through database and show icons that:
-				//-have a check-in time that is after 5am on Saturday
-				//-have coordinates that are between bounds
-				//-have a type
-
-				// Performing SQL query
-				$lastSat->modify('this week');
-				$lastSat->modify('this week +6 days');
-				$query = 'SELECT ID, LastCheckIn FROM vendors' . $lastSat;
-				$result = mysql_query($query) or die('Query failed: ' . mysql_error());
-				echo $result;
-				echo $lastSat;
-
-
-				?>
-
 		</footer>
 	</div>
 </body>
