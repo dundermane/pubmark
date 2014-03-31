@@ -11,6 +11,10 @@ def landing():
 @app.route("/admin")
 def admin():
     return render_template('admin.html')
+    
+@app.route("/vendor")
+def vendor():
+    return render_template('vendor.html')
 
 if __name__ == "__main__":
     app.run()

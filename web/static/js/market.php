@@ -80,7 +80,7 @@ function buildStage(images) {
 	fore.add(zin_button);
 	fore.add(zout_button);
 
-	<?php	
+	<?php /////////JSON NEEDED	
 		// Performing SQL query
 		$lastSat = strtotime('last Saturday + 5 hours');
 		$query = 'SELECT ID, Category, LastLocX, LastLocY FROM vendors WHERE LastCheckIn >' . $lastSat;
@@ -98,7 +98,7 @@ function buildStage(images) {
 			echo "\nmaplay.add(vendor" . $i . ");\n\n";
 			$i += 1;
 		}
-		mysql_free_result($result);		
+		mysql_free_result($result);	
 	?>
 	
 	// add the layers to the stage
@@ -159,18 +159,8 @@ var maplay = new Kinetic.Layer({
 var sources = {
 	mapObj: 'pubmark_map.png',
 	zin: 'zin.svg',
-	zout: 'zout.svg'<?php
-		// Performing SQL query
-		$lastSat = strtotime('last Saturday + 5 hours');
-		$query = 'SELECT Category FROM vendors WHERE LastCheckIn >' . $lastSat . ' GROUP BY Category';
-		$result = mysql_query($query) or die('alert(Query failed: ' . mysql_error() . ');');
-
-		// Defining all Category Icons
-		while ($map_icon = mysql_fetch_array($result, MYSQL_ASSOC)) {
-			echo ",\n\t" . $map_icon["Category"] . ": 'icn/" . $map_icon["Category"] . ".svg'";
-		}
-		mysql_free_result($result);
-	?>
+	zout: 'zout.svg',
+	//JSON: GET ALL ICON FILE NAMES
 };
 
 //define the dragging bounds of maplay
