@@ -1,8 +1,0 @@
-Options -Indexes
-
-IndexIgnore *.txt *.py
-
-<files somescript.py>
-	order allow,deny
-	deny from all
-</files>
