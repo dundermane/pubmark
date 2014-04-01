@@ -38,7 +38,10 @@ class DBlayer(object):
             'name':'Default Merchant',
             'description':'Pay no attention to the default user behind the curtain.',
             'twitterhandle':'@CityRochesterNY',
+            'twitterid':'275002578',
             'lastupdated':'1970-01-02 12:34:56',
+            'lastgeo':'None',
+            'lasttweet':'90557458052943873',
         }
 
         """
@@ -46,20 +49,54 @@ class DBlayer(object):
 
         # add entity to the database
         merchant['lastupdated'] = str(strftime("%Y-%m-%d %H:%M:%S"))
+        merchant['lastgeo'] = None
+        merchant['lasttweet'] = None
         self.merchants.insert(merchant)
 
         return True
 
 
-    def getmerchants(self):
+    def getmerchants(self,find=None,sortby=None,direction=None):
 
-         # get all of the merchants
-        results = self.merchants.find()
+         # get the merchants
+        results = self.merchants.find(find)
+        if sortby:
+            results = results.sort(sortby,direction)
         output = []
         for result in results:
             output.append(result)
         return output
+        
+    def updatemerchant(self, merchid, new):
+ 
+        """
+        new = {
+            'lastupdated':'1970-01-02 12:34:56',
+            'lastgeo':'None',
+            'lasttweet':'90557458052943873',
+        }
+        
+        """
+        self.merchants.update({"_id": merchid},{"$set": new})
+        return False
+        
+    def addtweet(self,tweet):
+    
+        """
+        
+        tweet = {
+            'id':'Default Merchant',
+            'merchant':'275002578',
+            'merchanthandle':'@CityRochesterNY',
+            'created':'1970-01-02 12:34:56',
+            'geo':'None(uhhh..)',
+            'hashtags':'#PublicMarket',
+        }
 
+        """
+        
+        self.tweets.insert(tweet)
+        return True
 
     def _clearall(self):
 
@@ -70,4 +107,5 @@ class DBlayer(object):
         self.settings.remove()
 
         return True
+
 
