@@ -46,14 +46,24 @@ class DBlayer(object):
 
         """
 
+        if self.DEBUG:
+            print "Adding merchant '{0}' to database ...".format(merchant['name'])
 
-        # add entity to the database
-        merchant['lastupdated'] = str(strftime("%Y-%m-%d %H:%M:%S"))
-        merchant['lastgeo'] = None
-        merchant['lasttweet'] = None
-        self.merchants.insert(merchant)
+        success = False
+        try:
 
-        return True
+            # add entity to the database
+            merchant['lastupdated'] = str(strftime("%Y-%m-%d %H:%M:%S"))
+            merchant['lastgeo'] = None
+            merchant['lasttweet'] = None
+            self.merchants.insert(merchant)
+            success = True
+
+        except Exceptioni, e:
+            if self.DEBUG:
+                print "There was an error while adding the merchant:\n\n\t{0}".format(str(e))
+
+        return success
 
 
     def getmerchants(self,find=None,sortby=None,direction=None):
@@ -65,6 +75,7 @@ class DBlayer(object):
         output = []
         for result in results:
             output.append(result)
+
         return output
         
     def updatemerchant(self, merchid, new):
@@ -77,8 +88,24 @@ class DBlayer(object):
         }
         
         """
-        self.merchants.update({"_id": merchid},{"$set": new})
-        return False
+        
+        if self.DEBUG:
+            print "Updating merchant '{0}' ...".format(merchid)
+
+        success = False
+        try:
+
+            self.merchants.update({"_id": merchid},{"$set": new})
+            success = True
+
+        except Exception, e:
+           if self.DEBUG:
+               print "There was an error while updating the merchant:\n\n\t{0}".format(str(e))
+
+        if self.DEBUG:
+           print "Merchant successfully updated."
+
+        return success
         
     def addtweet(self,tweet):
     
@@ -94,9 +121,26 @@ class DBlayer(object):
         }
 
         """
-        
-        self.tweets.insert(tweet)
-        return True
+        if self.DEBUG:
+            try:
+                print "Adding tweet '{0}' ...".format(tweet['id'])
+            except:
+                print "Adding tweet ..."
+
+        success = False
+        try:
+
+            self.tweets.insert(tweet)
+            success = True
+
+        except Exception, e:
+           if self.DEBUG:
+               print "There was an error while adding tweet:\n\n\t{0}".format(str(e))
+
+        if self.DEBUG:
+           print "Tweet successfully added."
+
+        return success
 
     def _clearall(self):
 
