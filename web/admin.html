@@ -5,5 +5,27 @@
 <p>
 You are now in the admin page.
 </p>
+<br>
+
+<script type=text/javascript>
+  $(function() {
+    $('a#submit').bind('click', function() {
+      $.getJSON('/admin/_add_vendor', {
+        name: $('input[name="name"]').val(),
+        tagline: $('input[name="tagline"]').val(),
+        twitterhandle: $('input[name="handle"]').val()
+      }, function(data) {
+        $("#result").text(data.result);
+      });
+      return false;
+    });
+  });
+</script>
+
+Name:<input type="text" name="name"></input><br>
+Tagline:<input type="text" name="tagline"><br>
+Twitter Handle:<input type="text" name="handle"><br>
+<a href=# id=submit>Submit New Merchant</a>
+<span id="result"></span>
 
 {% endblock %}

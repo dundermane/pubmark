@@ -45,10 +45,14 @@ class DBlayer(object):
         }
 
         """
-
+        if self.merchants.find_one({'twitterhandle':merchant['twitterhandle']}):
+            if self.DEBUG:
+                print "Found merchant '{0}' already.  Consider updatemerchant() instead...".format(merchant['name'])
+            return False
+        
         if self.DEBUG:
             print "Adding merchant '{0}' to database ...".format(merchant['name'])
-
+        
         success = False
         try:
 
@@ -56,10 +60,11 @@ class DBlayer(object):
             merchant['lastupdated'] = str(strftime("%Y-%m-%d %H:%M:%S"))
             merchant['lastgeo'] = None
             merchant['lasttweet'] = None
+            merchant['twitterid'] = None
             self.merchants.insert(merchant)
             success = True
 
-        except Exceptioni, e:
+        except Exception, e:
             if self.DEBUG:
                 print "There was an error while adding the merchant:\n\n\t{0}".format(str(e))
 

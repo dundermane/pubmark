@@ -11,9 +11,9 @@ body {
 
 #container {
 	text-align: center;
-	padding: 0px;
 	margin: 0px;
-	width: 100%;
+	padding: 0px;
+z	width: 100%;
 	height: auto;
 	min-width: 20px;
 }

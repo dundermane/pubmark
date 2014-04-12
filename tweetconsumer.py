@@ -42,14 +42,14 @@ class TweetConsumer(object):
             print "Adding statuses to database ..."
 
         for stat in reversed(statuses):
-            self.pmdb.addtweet(filtertweet(stat))
+            self.pmdb.addtweet(self.filtertweet(stat))
             new = {'lastupdated':stat.created_at,
                    'lasttweet':stat.id,
                    'twitterhandle':stat.user.screen_name
             }
             self.pmdb.updatemerchant(merchant['_id'], new)
-	        
-            print 'nom.'
+            if self.DEBUG:
+		        print 'nom.'
 	        
 
     def filtertweet(self,s):
