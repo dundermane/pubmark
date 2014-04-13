@@ -13,7 +13,7 @@ body {
 	text-align: center;
 	margin: 0px;
 	padding: 0px;
-z	width: 100%;
+	width: 100%;
 	height: auto;
 	min-width: 20px;
 }
@@ -44,7 +44,7 @@ z	width: 100%;
 #content1 {
 	display: inline-block;
 	vertical-align: top;
-	height: auto;
+	height: 100%;
 	width: 100%;
 	margin: 0px;
 	background-color: #EEE;
