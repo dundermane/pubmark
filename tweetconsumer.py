@@ -29,19 +29,19 @@ class TweetConsumer(object):
         # get the latest merchant list
         merchantlist = self.pmdb.getmerchants()
 
-        statuses = []
+        self.statuses = []
         for merchant in merchantlist:
             if merchant['twitterid']==None:
                 self.pulltwitterid(merchant)
-                statuses.append(self.api.GetUserTimeline(user_id=merchant['twitterid'],
+                self.statuses.extend(self.api.GetUserTimeline(user_id=merchant['twitterid'],
                                 include_rts=False,
                                 since_id=merchant['lasttweet'],
                 ))
 
         if self.DEBUG:
             print "Adding statuses to database ..."
-
-        for stat in reversed(statuses):
+        for stat in reversed(self.statuses):
+            print stat.created_at
             self.pmdb.addtweet(self.filtertweet(stat))
             new = {'lastupdated':stat.created_at,
                    'lasttweet':stat.id,
@@ -50,10 +50,11 @@ class TweetConsumer(object):
             self.pmdb.updatemerchant(merchant['_id'], new)
             if self.DEBUG:
 		        print 'nom.'
-	        
+
 
     def filtertweet(self,s):
         ftweet = {'id':str(s.id),
+                  'text':s.text,
                   'merchant':str(s.user.id),
                   'merchanthandle':str(s.user.screen_name),
                   'created':str(s.created_at),

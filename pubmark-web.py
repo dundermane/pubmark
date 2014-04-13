@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, render_template, request
 from dblayer import DBlayer
+from tweetconsumer import TweetConsumer
 
 pmdb = DBlayer()
 
@@ -18,8 +19,16 @@ def add_vendor():
     handle = request.args.get('twitterhandle', 0, type=str)
     new = {'name': name, 'twitterhandle': handle, 'description': tline}
     added = pmdb.addmerchant(new)
-    print 'yes'
     return jsonify(result=added)
+    
+#@app.route('/admin/_consume_tweets')
+#def consume_tweets():
+#    print 'im in'
+#    cons = TweetConsumer()
+#    print 'init'
+#    new = cons.consume()
+#    print 'nom'
+#    return str(new)
     
 @app.route("/admin")
 def admin():

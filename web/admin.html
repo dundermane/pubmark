@@ -21,11 +21,23 @@ You are now in the admin page.
     });
   });
 </script>
+<!--
+<script type=text/javascript>
+  $(function() {
+    $('a#consume').bind('click', function() {
+			$.get( "/admin/_consume_tweets", function( data ) {
+				alert( data );
+			});
+      return false;
+    });
+  });
+</script>-->
 
 Name:<input type="text" name="name"></input><br>
 Tagline:<input type="text" name="tagline"><br>
 Twitter Handle:<input type="text" name="handle"><br>
-<a href=# id=submit>Submit New Merchant</a>
+<a href=# id=submit>Submit New Merchant</a><br><br>
+<!--<a href=# id=consume>Munch on Some Tweets</a>-->
 <span id="result"></span>
 
 {% endblock %}
