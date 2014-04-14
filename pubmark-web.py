@@ -12,7 +12,7 @@ def landing():
     return render_template('landing.html')
 
 
-@app.route('/admin/_add_vendor')
+@app.route('/admin/_add_merchant')
 def add_vendor():
     name = request.args.get('name', 0, type=str)
     tline = request.args.get('tagline', 0, type=str)

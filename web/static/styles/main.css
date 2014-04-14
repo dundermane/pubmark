@@ -113,11 +113,18 @@ table {
 	margin: 4px 2px;
 }
 
-#shoutBlock {
-	overflow: auto;
-	height: 70%;
+
+.meAdmin {
+	display: none;
 }
 
+#listMerchant {
+	overflow: auto;
+}
+
+#adminMenu {
+	display: block;
+}
 
 footer {
 	display: none;
