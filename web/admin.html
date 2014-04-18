@@ -9,6 +9,7 @@ You are now in the admin page.
 
 <div id="adminMenu" class="meAdmin">
 	<a href=# id="merchant_list">View Merchant List</a><br>
+	<a href=# id="category_list">View Category List</a><br>
 	<a href=# id="merchant_menu">Add a new Merchant</a><br>
 	<a href=# id="category_menu">Add a new Category</a><br>	
 </div>
@@ -19,20 +20,34 @@ You are now in the admin page.
 	</ul>
 </div>
 
+<div id="listCategory" class="meAdmin">
+	<h3>Current Categories:<h3>
+	<ul id="list">
+	</ul>
+</div>
+
 <div id="newMerchant" class="meAdmin">
-	Name:<input type="text" name="name"></input><br>
-	Tagline:<input type="text" name="tagline"><br>
-	Twitter Handle:<input type="text" name="handle"><br>
-	<a href=# id="submit">Submit New Merchant</a><br><br>
-	<span id="result"></span>
+	<h3>Create New Merchant</h3>
+	Name:<input type="text" name="merchname"></input><br>
+	Tagline:<input type="text" name="merchtag"><br>
+	Twitter Handle:<input type="text" name="merchhand"><br>
+	<a href=# id="merchsubmit" class="button">Submit</a><br><br>
+	<span id="merchreturn"></span>
 </div>
 
 <div id="newCategory" class="meAdmin">
-	Category Name: <input type="text" name="catname"></input>
-	Icon: <input type="file" name="icon"></input>
+  <link rel="stylesheet" href="styles/uploader.css" />
+	<h3>Create New Category</h3>
+	<div id="catpic"></div>
+	<form action="catform" method="post" id="catform" enctype="multipart/form-data">
+		Name: <input type="text" name="catname" style="width:10"><br>
+		File:<input type="file" name="caticon" id='caticon'><br>
+	</form>
+	<a href=# id="catsubmit" class="button">Submit</a>
+	<span id="catreturn"></span>
 </div>
 <br>
-<a href=# id="back">Back</a>
+<a href=# id="back" class="button">Back</a>
 
 <script src="js/admin.js" type="text/javascript"></script>
 

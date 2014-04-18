@@ -1,3 +1,7 @@
+/******
+ CLEAR
+*******/
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -53,6 +57,10 @@ table {
 	width: 100%;
 	min-width: 110px;
 }
+
+/******
+ BOX-INFO
+*******/
 
 #content1 {
 	position: absolute;
@@ -113,7 +121,9 @@ table {
 	margin: 4px 2px;
 }
 
-
+/******
+ ADMIN
+*******/
 .meAdmin {
 	display: none;
 }
@@ -125,6 +135,42 @@ table {
 #adminMenu {
 	display: block;
 }
+
+#catpic {
+	background-image: url('web/static/images/no_icon.png');
+	background-size: 50px 50px;
+	float: left;
+	height: 50px;
+	width: 50px;
+	margin-left: 10px;
+	border: dotted #AAA 2px;
+}
+
+#back {
+	display: none;
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+}
+
+a.button {
+	display: inline-block;
+	margin-top: 10px;
+	padding: 3px;
+	background-color: #9AF;
+	border: solid #78F 2px;
+	border-radius: 4px;
+	color: #447;
+	text-decoration: none;
+}
+a.button:visited {
+	color: #447;
+	text-decoration: none;
+}
+
+/******
+ FOOT
+*******/
 
 footer {
 	display: none;
