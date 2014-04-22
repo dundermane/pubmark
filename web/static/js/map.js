@@ -1,6 +1,7 @@
-var LeafIcon = L.Icon.extend({
+
+var LeafIcon2 = L.Icon.extend({
     options: {
-        shadowUrl: 'icon-shadow.png',
+        shadowUrl: '/images/icn/bmin.svg',
         iconSize:     [38, 95],
         shadowSize:   [50, 64],
         iconAnchor:   [22, 94],
@@ -9,16 +10,75 @@ var LeafIcon = L.Icon.extend({
     }
 });
 
+var LeafIcon = L.Icon.extend({
+    options: {
+        iconSize:     [32, 32],
+        iconAnchor:   [22, 16],
+        popupAnchor:  [-3, -16]
+    }
+});
+
+
+
 var map = L.map('map').setView([43.16506,-77.5883], 18);
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
     maxZoom: 20
 	}).addTo(map);
-	
-var greenIcon = new LeafIcon({iconUrl: 'icon-.png'}),
-    redIcon = new LeafIcon({iconUrl: 'icon-.png'}),
-    orangeIcon = new LeafIcon({iconUrl: 'icon-.png'});
+
+var meat = new LeafIcon({iconUrl: '/images/icn/bmin.svg'}),
+    redIcon = new LeafIcon({iconUrl: '/images/icn/icon.png'}),
+    orangeIcon = new LeafIcon({iconUrl: '/images/icn/icon.png'});
     
-L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map).bindPopup("I am a something.");
+
+L.marker([43.16506,-77.5883], {icon: meat}).addTo(map).bindPopup("This is the center.");
 L.marker([51.495, -0.083], {icon: redIcon}).addTo(map).bindPopup("I am something else.");
 L.marker([51.49, -0.1], {icon: orangeIcon}).addTo(map).bindPopup("I an other thing.");
+recentIcons();
+
+//Show all the last locations for all vendors
+function recentIcons() {
+	var getting = true;
+	var n = 0;
+	while(n<10&&getting==true) {
+	  getting = $.getJSON('/_recent_merchants', {
+	    n: n,
+	  }, function(data) {
+	    if (data.geo) {
+	    	populate(data);
+	    	return true;
+	    }
+	    else
+	    {
+	    	return true;
+	    }
+	  }).fail( function(d) {
+            console.log('error');
+            return false;
+      });
+	  n++;
+	};
+};
+
+//show all the locations for one vendor.
+function populateVendorIcons(vendor) {
+
+};
+
+function populate(merchant) {
+	console.log(merchant.geo.coordinates);
+	console.log(merchant.category);
+	L.marker(merchant.geo.coordinates, 
+			{icon: meat})
+	.addTo(map)
+	.bindPopup("This is a Merchant");
+};
+
+//in bounds
+var lonbounds = [42,43];
+var latbounds = [-77,-76];
+function inBounds(geo) {
+	if (geo[0] >= lonbounds[0] && geo[0] <= lonbounds[1] && geo[1] >= latbounds[0] && geo[1] <= latbounds[1]) {return true}
+	else {return false}
+};
+

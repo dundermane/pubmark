@@ -42,6 +42,7 @@ class DBlayer(object):
             'lastupdated':'1970-01-02 12:34:56',
             'lastgeo':'None',
             'lasttweet':'90557458052943873',
+            'category':'meat',
         }
 
         """

@@ -24,16 +24,25 @@ def landing():
 def get_tweets():
     filter = request.args.get('filter', type=str)
     n = request.args.get('n', 0, type=int)
-    print filter
     if (filter=='none'):
-        print 'worked'
         result = pmdb.tweets.find().sort('created', -1)[n]
     else:
-        print 'dint work'
         result = pmdb.tweets.find({'merchanthandle':filter}).sort('created', -1)[n]
     return jsonify(text=result['text'],created=result['created'],merchant=result['merchanthandle'])
 
 ##END MAIN PAGE
+
+
+##MAP
+
+@app.route('/_recent_merchants')
+def recent_merchants():
+    n = request.args.get('n', 0, type=int) ##finds the most recently updated merchants
+    result = pmdb.merchants.find().sort('lastupdated', -1)[n]
+    return jsonify(name=result['name'],description=result['description'],handle=result['twitterhandle'],tid=result['twitterid'],updated=result['lastupdated'],geo=result['lastgeo'],category=result['category'])
+    
+##END MAP
+
 
 ##ADMIN PAGE
 

@@ -45,6 +45,7 @@ class TweetConsumer(object):
             self.pmdb.addtweet(self.filtertweet(stat))
             new = {'lastupdated':stat.created_at,
                    'lasttweet':stat.id,
+                   'lastgeo':stat.geo,
                    'twitterhandle':stat.user.screen_name
             }
             self.pmdb.updatemerchant(merchant['_id'], new)
