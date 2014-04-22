@@ -14,9 +14,26 @@ app.config['CATEGORY_ICON_DIR'] = 'web/static/images/icn/'
 app.config['TEMP_UPLOAD'] = 'web/static/temp/'
 ALLOWED_IMAGES = set(['png','jpg'])
 
+##START MAIN PAGE
+
 @app.route("/")
 def landing():
     return render_template('landing.html')
+
+@app.route('/_get_tweets')
+def get_tweets():
+    filter = request.args.get('filter', type=str)
+    n = request.args.get('n', 0, type=int)
+    print filter
+    if (filter=='none'):
+        print 'worked'
+        result = pmdb.tweets.find().sort('created', -1)[n]
+    else:
+        print 'dint work'
+        result = pmdb.tweets.find({'merchanthandle':filter}).sort('created', -1)[n]
+    return jsonify(text=result['text'],created=result['created'],merchant=result['merchanthandle'])
+
+##END MAIN PAGE
 
 ##ADMIN PAGE
 
@@ -49,6 +66,7 @@ def catadd():
         if file and allowed_file(file.filename):
             filename = os.path.join(app.config['CATEGORY_ICON_DIR'], "%s.%s" % (name, file.filename.rsplit('.', 1)[1]))
             file.save(filename)
+            pmdb.add(filename)
             return jsonify({"success":True})
 
 @app.route('/admin/_preview_category', methods=['POST'])
