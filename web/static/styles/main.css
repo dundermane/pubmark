@@ -121,6 +121,59 @@ table {
 	margin: 4px 2px;
 }
 
+
+/********
+LANDING 
+********/
+
+
+#shoutBlock {
+overflow: auto;
+height: 70%;
+}
+
+.tweet {
+display: inline-block;
+position: relative;
+vertical-align: baseline;
+width: 95%;
+min-height: 30px;
+margin-top: 6px;
+border-radius: 5px;
+padding: 5px;
+background-color: #DDE;
+color: #555;
+font-size: 8pt;
+}
+
+.tweet p {
+text-align: center;
+margin: 5px;
+font-size: 12px;
+}
+
+.tweet img {
+height: 32px;
+width: 32px;
+margin: 2px;
+float: left;
+}
+
+.tweet-author {
+display: block;
+position: absolute;
+bottom: 8px;
+left: 44px;
+float: left;
+}
+
+.tweet-time {
+display: block;
+position: absolute;
+bottom: 8px;
+right: 8px;
+}
+
 /******
  ADMIN
 *******/

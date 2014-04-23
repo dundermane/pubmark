@@ -3,12 +3,35 @@ $(function() {
     $.getJSON('/admin/_add_merchant', {
       name: $('input[name="merchname"]').val(),
       tagline: $('input[name="merchtag"]').val(),
-      twitterhandle: $('input[name="merchhand"]').val()
+      twitterhandle: $('input[name="merchhand"]').val(),
+      category: $('select[name="catdrop"]').val()
     }, function(data) {
       $("#merchreturn").text(data.result);
     });
     return false;
   });
+});
+
+
+//Populate categories list
+$(function()  {
+  $('#newMerchant').ready(function() {
+		var getting = true;
+		var n = 0;
+		while(n<10&&getting==true) {
+			getting = $.getJSON('/_get_categories', {
+			  n: n,
+			}, function(data) {
+					$('select[name="catdrop"]').append(
+							$('<option>').attr('value',data.name).append(data.name));
+			  	return true;
+			    }
+			).fail( function(d) {
+		          return false;
+		  });
+			n++;
+		};
+	});
 });
 
 //ON CHANGE

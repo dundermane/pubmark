@@ -26,14 +26,15 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 20
 	}).addTo(map);
 
-var meat = new LeafIcon({iconUrl: '/images/icn/bmin.svg'}),
-    redIcon = new LeafIcon({iconUrl: '/images/icn/icon.png'}),
-    orangeIcon = new LeafIcon({iconUrl: '/images/icn/icon.png'});
+var icons = {};
+icons['meat'] = new LeafIcon({iconUrl: '/images/icn/bmin.svg'}),
+icons['redIcon'] = new LeafIcon({iconUrl: '/images/icn/meat.svg'}),
+icons['orangeIcon'] = new LeafIcon({iconUrl: '/images/icn/flowers.svg'});
     
-
-L.marker([43.16506,-77.5883], {icon: meat}).addTo(map).bindPopup("This is the center.");
-L.marker([51.495, -0.083], {icon: redIcon}).addTo(map).bindPopup("I am something else.");
-L.marker([51.49, -0.1], {icon: orangeIcon}).addTo(map).bindPopup("I an other thing.");
+//test markers
+L.marker([43.16506,-77.5883], {icon: icons['meat']}).addTo(map).bindPopup("This is the center.");
+L.marker([43.1659,-77.5883], {icon: icons['redIcon']}).addTo(map).bindPopup("I am something else.");
+L.marker([43.1642,-77.5883], {icon: icons['orangeIcon']}).addTo(map).bindPopup("I an other thing.");
 recentIcons();
 
 //Show all the last locations for all vendors
@@ -53,7 +54,6 @@ function recentIcons() {
 	    	return true;
 	    }
 	  }).fail( function(d) {
-            console.log('error');
             return false;
       });
 	  n++;
@@ -67,16 +67,15 @@ function populateVendorIcons(vendor) {
 
 function populate(merchant) {
 	console.log(merchant.geo.coordinates);
-	console.log(merchant.category);
 	L.marker(merchant.geo.coordinates, 
-			{icon: meat})
+			{icon: icons[merchant.category]})
 	.addTo(map)
 	.bindPopup("This is a Merchant");
 };
 
 //in bounds
-var lonbounds = [42,43];
-var latbounds = [-77,-76];
+var lonbounds = [43.1659,43.1642];
+var latbounds = [-77.5910,-77.5874];
 function inBounds(geo) {
 	if (geo[0] >= lonbounds[0] && geo[0] <= lonbounds[1] && geo[1] >= latbounds[0] && geo[1] <= latbounds[1]) {return true}
 	else {return false}

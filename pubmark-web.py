@@ -30,6 +30,12 @@ def get_tweets():
         result = pmdb.tweets.find({'merchanthandle':filter}).sort('created', -1)[n]
     return jsonify(text=result['text'],created=result['created'],merchant=result['merchanthandle'])
 
+@app.route('/_get_merchant')
+def get_merchant():
+    name = request.args.get('handle', type=str) ##finds the most recently updated merchants
+    result = pmdb.merchants.find_one({'twitterhandle':name})
+    return jsonify(name=result['name'],description=result['description'],handle=result['twitterhandle'],tid=result['twitterid'],updated=result['lastupdated'],geo=result['lastgeo'],category=result['category'])
+
 ##END MAIN PAGE
 
 
@@ -39,6 +45,7 @@ def get_tweets():
 def recent_merchants():
     n = request.args.get('n', 0, type=int) ##finds the most recently updated merchants
     result = pmdb.merchants.find().sort('lastupdated', -1)[n]
+    print result
     return jsonify(name=result['name'],description=result['description'],handle=result['twitterhandle'],tid=result['twitterid'],updated=result['lastupdated'],geo=result['lastgeo'],category=result['category'])
     
 ##END MAP
@@ -51,7 +58,9 @@ def add_vendor():
     name = request.args.get('name', 0, type=str)
     tline = request.args.get('tagline', 0, type=str)
     handle = request.args.get('twitterhandle', 0, type=str)
-    new = {'name': name, 'twitterhandle': handle, 'description': tline}
+    category = request.args.get('category',type=str)
+    new = {'name': name, 'category': category, 'twitterhandle': handle, 'description': tline}
+    print new
     added = pmdb.addmerchant(new)
     return jsonify(result=added)
     
@@ -75,7 +84,8 @@ def catadd():
         if file and allowed_file(file.filename):
             filename = os.path.join(app.config['CATEGORY_ICON_DIR'], "%s.%s" % (name, file.filename.rsplit('.', 1)[1]))
             file.save(filename)
-            pmdb.add(filename)
+            new = {'name': name, 'filename':filename}
+            pmdb.addcategory(new)
             return jsonify({"success":True})
 
 @app.route('/admin/_preview_category', methods=['POST'])
@@ -89,6 +99,14 @@ def catpreview():
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_IMAGES
+
+
+@app.route('/_get_categories')
+def get_categories():
+    n = request.args.get('n', 0, type=int)
+    result = pmdb.categories.find().sort('name', -1)[n]
+    return jsonify(name=result['name'],filename=result['filename'])
+    
 
 
 @app.route("/admin")

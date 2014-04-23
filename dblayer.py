@@ -148,6 +148,38 @@ class DBlayer(object):
 
         return success
 
+    def addcategory(self,category):
+    
+        """
+        
+        category = {
+            'name':'meat',
+            'icon':'meat.png',
+            'background-color':'#FF6622',
+        }
+
+        """
+        if self.DEBUG:
+            try:
+                print "Adding category '{0}' ...".format(category['name'])
+            except:
+                print "Adding category ..."
+
+        success = False
+        try:
+
+            self.categories.insert(category)
+            success = True
+
+        except Exception, e:
+           if self.DEBUG:
+               print "There was an error while adding category:\n\n\t{0}".format(str(e))
+
+        if self.DEBUG:
+           print "Category successfully added."
+
+        return success
+
     def _clearall(self):
 
         # blow away the entire database
