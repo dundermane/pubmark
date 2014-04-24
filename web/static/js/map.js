@@ -1,20 +1,12 @@
 
-var LeafIcon2 = L.Icon.extend({
-    options: {
-        shadowUrl: '/images/icn/bmin.svg',
-        iconSize:     [38, 95],
-        shadowSize:   [50, 64],
-        iconAnchor:   [22, 94],
-        shadowAnchor: [4, 62],
-        popupAnchor:  [-3, -76]
-    }
-});
 
 var LeafIcon = L.Icon.extend({
     options: {
         iconSize:     [32, 32],
         iconAnchor:   [22, 16],
-        popupAnchor:  [-3, -16]
+        popupAnchor:  [-3, -16],
+        shadowSize:   [32, 32],
+        shadowAnchor: [22, 16]
     }
 });
 
@@ -27,15 +19,25 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	}).addTo(map);
 
 var icons = {};
-icons['meat'] = new LeafIcon({iconUrl: '/images/icn/bmin.svg'}),
-icons['redIcon'] = new LeafIcon({iconUrl: '/images/icn/meat.svg'}),
-icons['orangeIcon'] = new LeafIcon({iconUrl: '/images/icn/flowers.svg'});
+icons['meat'] = new LeafIcon({iconUrl: '/images/icn/produce.png'}),
+icons['coffee'] = new LeafIcon({iconUrl: '/images/icn/bread.png'}),
+icons['produce'] = new LeafIcon({iconUrl: '/images/icn/local.png'}),
+
     
-//test markers
+//dummy markers
 L.marker([43.16506,-77.5883], {icon: icons['meat']}).addTo(map).bindPopup("This is the center.");
-L.marker([43.1659,-77.5883], {icon: icons['redIcon']}).addTo(map).bindPopup("I am something else.");
-L.marker([43.1642,-77.5883], {icon: icons['orangeIcon']}).addTo(map).bindPopup("I an other thing.");
+L.marker([43.16544, -77.58887], {icon: icons['meat']}).addTo(map);
+L.marker([43.16537, -77.58924], {icon: icons['coffee']}).addTo(map);
+L.marker([43.16528, -77.58822], {icon: icons['produce']}).addTo(map);
+L.marker([43.16493, -77.58952], {icon: icons['produce']}).addTo(map);
+L.marker([43.16469, -77.58864], {icon: icons['produce']}).addTo(map);
+L.marker([43.16544, -77.58868], {icon: icons['coffee']}).addTo(map);
+L.marker([43.16522, -77.58866], {icon: icons['produce']}).addTo(map);
+L.marker([43.16502, -77.58904], {icon: icons['meat']}).addTo(map);
+L.marker([43.16546, -77.58943], {icon: icons['meat']}).addTo(map);
+L.marker([43.16515, -77.58985], {icon: icons['meat']}).addTo(map);
 recentIcons();
+
 
 //Show all the last locations for all vendors
 function recentIcons() {
