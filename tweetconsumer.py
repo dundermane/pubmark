@@ -39,10 +39,10 @@ class TweetConsumer(object):
                     print "no use adding any statuses..."
                     continue
                 self.statuses = []
-                self.statuses.extend(self.api.GetUserTimeline(user_id=merchant['twitterid'],
-                                include_rts=False,
-                                since_id=merchant['lasttweet'],
-                ))
+            self.statuses.extend(self.api.GetUserTimeline(user_id=merchant['twitterid'],
+                            include_rts=False,
+                            since_id=merchant['lasttweet'],
+            ))
 
             if self.DEBUG:
                 print "Adding statuses to database ..."
