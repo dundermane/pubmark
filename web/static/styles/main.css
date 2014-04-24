@@ -100,14 +100,20 @@ table {
 
 }
 
-#titleBlock  h1,h2,div{
+#titleBlock  a,h1,h2,div{
 	font-family: sans-serif;
 	text-align: center;
 }
 
-#titleBlock h1 {
+#titleBlock a,h1 {
 	font-size: 35pt;
 	color: #232;
+	text-decoration: none;
+}
+
+#titleBlock a:visited {
+	color: #232;
+	text-decoration: none;
 }
 
 #titleBlock h2 {
